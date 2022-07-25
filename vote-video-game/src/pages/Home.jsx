@@ -42,7 +42,7 @@ export function Home() {
         }).catch(function(err) {
             console.error('Failed retrieving information', err);
         });
-    }, 1)
+    })
 
     function handleNewVideoGame(e) {
         e.preventDefault();
@@ -53,13 +53,13 @@ export function Home() {
         } 
 
         const videoGame = {
-            id: 0,
             name: nome,
             urlImage: urlImg,
-            votes: 0 // No back zera o valor caso o usuario modifique aqui 
         }
 
         const url = "https://vote-video-game-api.herokuapp.com/videogame";
+        const tempJSON = JSON.stringify(videoGame)
+        console.log(tempJSON)
         fetch(url, {
             method: "POST",
             body: JSON.stringify(videoGame)
