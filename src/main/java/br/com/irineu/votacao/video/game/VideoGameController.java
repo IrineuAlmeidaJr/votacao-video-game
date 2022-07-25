@@ -19,10 +19,10 @@ public class VideoGameController {
         return repository.findAll();
     }
 
-    @PostMapping("/videogame")
-    public ResponseEntity<VideoGame> createVideoGame(@RequestBody VideoGame videoGame) {
-        if(videoGame.getName() != null && videoGame.getUrlImage() != null) {
-            videoGame.setVotes(0);
+    @PostMapping(value = "/videogame", consumes = {"*/*"})
+    public ResponseEntity<VideoGame> createVideoGame(@PathVariable String newName, String newUrl) {
+        if(newName != null && newUrl != null && !newName.equals(" ") && !newUrl.equals(" ")) {
+            VideoGame videoGame = new VideoGame(newName, newUrl);
             repository.save(videoGame);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }
