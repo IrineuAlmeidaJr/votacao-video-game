@@ -18,9 +18,8 @@ public class VideoGameController {
     public List<VideoGame> getAllVideoGame(){
         return repository.findAll();
     }
-
-    @CrossOrigin(origins = "*")
-    @PostMapping(value = "/videogame", consumes = {"application/json"})
+    
+    @PostMapping(value = "/videogame")
     public ResponseEntity<VideoGame> createVideoGame(@RequestBody VideoGame videoGame) {
         if(videoGame.getName() != null && videoGame.getUrlImage() != null) {
             videoGame.setVotes(0);
