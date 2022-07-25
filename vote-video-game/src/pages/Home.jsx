@@ -5,10 +5,30 @@ import { Send } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 
 export function Home() {
-    const [listaVideoGames, setlistaVideoGames] = useState([]);
+    const [listaVideoGames, setListaVideoGames] = useState([]);
+    const [votos, setVotos] = useState(0);
     const [nome, setNome] = useState('');
     const [urlImg, setUrlImg] = useState('');
 
+    function ordenarPorVotos(data) {
+        let temp = data;
+        let aux, pos;
+        for(let i = 1; i < temp.length; i++) {
+            aux = temp[i];
+            pos = i;
+            while(pos > 0 && aux.votes > temp[pos - 1].votes) {
+                temp[pos] = temp[pos-1];
+                pos--;
+            }
+            temp[pos]=aux;
+        }
+
+        for(let i = 0; i < temp.length; i++) {
+            temp[i].votes = i+1;
+        }
+
+        return temp;   
+    }
 
     useEffect(() => {
         const url = "https://vote-video-game-api.herokuapp.com/videogame";
@@ -17,13 +37,16 @@ export function Home() {
         })
         .then(response => {
             response.json().then(data => {
-                console.log(data);
-            });
+                setListaVideoGames(ordenarPorVotos(data));                
+            })
         }).catch(function(err) {
             console.error('Failed retrieving information', err);
         });
-
     })
+
+    function handleNewVideoGame() {
+
+    }
 
 
     return(
@@ -40,6 +63,7 @@ export function Home() {
                         id="outlined-required"
                         label="Nome Video Game"
                         defaultValue=" "
+                        onChange={setNome}
                         />
                         <TextField
                         sx={{ mb: 1 }}
@@ -47,6 +71,7 @@ export function Home() {
                         id="outlined-required"
                         label="URL Imagem"
                         defaultValue=" "
+                        onChange={setUrlImg}
                         />
                         <Button 
                         variant="contained" 
@@ -57,25 +82,22 @@ export function Home() {
                             padding: "8px",
                             fontSize: "12px"
                         }}
+                        onClick={handleNewVideoGame}
                         >
                             Enviar
                         </Button>
                         
                    </aside>
                    <section className="w-full py-5 mr-4 grid grid-cols-3 gap-x-8 gap-y-4 bg-yellow-100/30 rounded-md overflow-auto">
-                        < Item 
-                            pos={1}
-                            url={"https://images.kabum.com.br/produtos/fotos/135586/nintendo-switch-32gb-1x-joycon-neon-azul-vermelho-hbdskaba2_1610110214_gg.jpg"}
-                        />
-                        < Item 
-                            pos={1}
-                            url={"https://images.kabum.com.br/produtos/fotos/135586/nintendo-switch-32gb-1x-joycon-neon-azul-vermelho-hbdskaba2_1610110214_gg.jpg"}
-                        />
-                        < Item 
-                            pos={1}
-                            url={"https://images.kabum.com.br/produtos/fotos/135586/nintendo-switch-32gb-1x-joycon-neon-azul-vermelho-hbdskaba2_1610110214_gg.jpg"}
-                        />
-
+                        {
+                            listaVideoGames.map(videoGame => (
+                                < Item 
+                                pos={videoGame.votes}
+                                nome={videoGame.name}
+                                url={videoGame.urlImage}
+                                />
+                            ))
+                        }
                    </section>
                </section>
             </div>

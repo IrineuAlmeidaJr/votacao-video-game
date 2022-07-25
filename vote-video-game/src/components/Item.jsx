@@ -6,7 +6,9 @@ export function Item(props) {
     return (
         <div className="bg-white m-2 max-h-[300px] flex flex-1 flex-col justify-center
             border-2 hover:border-[#b03c2f] rounded-lg overflow-hidden"> 
-            <p className="flex  bg-[#b03c2f] text-white justify-center items-center">Nintendo Switch</p>
+            <p className="flex  bg-[#b03c2f] text-white justify-center items-center">
+                {props.nome}
+            </p>
             <div className="w-[250px]">
                 <img 
                 src={props.url}
