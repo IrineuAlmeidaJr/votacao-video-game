@@ -11,10 +11,10 @@ public class VideoGame {
     private String urlImage;
     private int votes;
 
-    public VideoGame(String name, String urlImage) {
+    public VideoGame(String name, String urlImage, int votes) {
         this.name = name;
         this.urlImage = urlImage;
-        this.votes = 0;
+        this.votes = votes;
     }
 
     public String getId() {
