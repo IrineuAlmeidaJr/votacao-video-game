@@ -42,9 +42,10 @@ export function Home() {
         }).catch(function(err) {
             console.error('Failed retrieving information', err);
         });
-    })
+    }, 1)
 
-    function handleNewVideoGame() {
+    function handleNewVideoGame(e) {
+        e.preventDefault();
         if(nome === '' || urlImg === '') {
             // mudar depois para uma mais bonito
             alert('Insira algo nos campos nopme urlImg');
@@ -52,6 +53,7 @@ export function Home() {
         } 
 
         const videoGame = {
+            id: 0,
             name: nome,
             urlImage: urlImg,
             votes: 0 // No back zera o valor caso o usuario modifique aqui 
