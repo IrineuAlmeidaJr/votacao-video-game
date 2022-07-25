@@ -7,8 +7,8 @@ import { useEffect, useState } from "react";
 export function Home() {
     const [listaVideoGames, setListaVideoGames] = useState([]);
     const [votos, setVotos] = useState(0);
-    const [nome, setNome] = useState('');
-    const [urlImg, setUrlImg] = useState('');
+    const [nome, setNome] = useState('a');
+    const [urlImg, setUrlImg] = useState('a');
 
     function ordenarPorVotos(data) {
         let temp = data;
@@ -45,7 +45,7 @@ export function Home() {
     })
 
     function handleNewVideoGame() {
-
+        console.log(`${nome}  |  ${urlImg}`)   
     }
 
 
@@ -63,7 +63,7 @@ export function Home() {
                         id="outlined-required"
                         label="Nome Video Game"
                         defaultValue=" "
-                        onChange={setNome}
+                        onChange={e => setNome(e.target.value)}
                         />
                         <TextField
                         sx={{ mb: 1 }}
@@ -71,7 +71,7 @@ export function Home() {
                         id="outlined-required"
                         label="URL Imagem"
                         defaultValue=" "
-                        onChange={setUrlImg}
+                        onChange={e => setUrlImg(e.target.value)}
                         />
                         <Button 
                         variant="contained" 
