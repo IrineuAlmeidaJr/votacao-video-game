@@ -60,11 +60,15 @@ export function Home() {
         const url = "https://vote-video-game-api.herokuapp.com/videogame";
         const tempJSON = JSON.stringify(videoGame)
         console.log(tempJSON)
-        fetch(url, {
-            method: "POST",
-            body: JSON.stringify(videoGame)
-        })
-        .then(response => response.json())
+        fetch('https://vote-video-game-api.herokuapp.com/videogame', {
+            method: "POST", // or "PUT" with the url changed to, e.g "https://reqres.in/api/users/2"
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(
+                { name: nome, urlImg: urlImg}
+            )
+        });
     }
 
 
