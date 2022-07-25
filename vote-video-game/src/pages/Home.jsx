@@ -1,14 +1,14 @@
 import { Header } from "../components/Header";
 import { Item } from "../components/Item";
 import { TextField, Button} from "@mui/material";
-import { Send } from "@mui/icons-material";
+import { PropaneSharp, Send } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 
 export function Home() {
     const [listaVideoGames, setListaVideoGames] = useState([]);
     const [votos, setVotos] = useState(0);
-    const [nome, setNome] = useState('a');
-    const [urlImg, setUrlImg] = useState('a');
+    const [nome, setNome] = useState('');
+    const [urlImg, setUrlImg] = useState('');
 
     function ordenarPorVotos(data) {
         let temp = data;
@@ -32,7 +32,7 @@ export function Home() {
 
     useEffect(() => {
         const url = "https://vote-video-game-api.herokuapp.com/videogame";
-        fetch("https://vote-video-game-api.herokuapp.com/videogame",{
+        fetch(url,{
             method: "GET",
         })
         .then(response => {
@@ -45,7 +45,24 @@ export function Home() {
     })
 
     function handleNewVideoGame() {
-        console.log(`${nome}  |  ${urlImg}`)   
+        if(nome === '' || urlImg === '') {
+            // mudar depois para uma mais bonito
+            alert('Insira algo nos campos nopme urlImg');
+            return; 
+        } 
+
+        const videoGame = {
+            name: nome,
+            urlImage: urlImg,
+            votes: 0 // No back zera o valor caso o usuario modifique aqui 
+        }
+
+        const url = "https://vote-video-game-api.herokuapp.com/videogame";
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify(videoGame)
+        })
+        .then(response => response.json())
     }
 
 
@@ -92,6 +109,8 @@ export function Home() {
                         {
                             listaVideoGames.map(videoGame => (
                                 < Item 
+                                key={videoGame.id}
+                                id={videoGame.id}
                                 pos={videoGame.votes}
                                 nome={videoGame.name}
                                 url={videoGame.urlImage}

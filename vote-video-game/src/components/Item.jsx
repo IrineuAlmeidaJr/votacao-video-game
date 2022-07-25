@@ -3,8 +3,16 @@ import { Favorite } from "@mui/icons-material";
 
 
 export function Item(props) {
+
+    function votar() {
+        const url = `https://vote-video-game-api.herokuapp.com/videogame/${props.id}`;
+        fetch(url,{
+            method: "PUT",
+        })
+    }
+
     return (
-        <div className="bg-white m-2 max-h-[300px] flex flex-1 flex-col justify-center
+        <div key={props.pos} className="bg-white m-2 max-h-[300px] flex flex-1 flex-col justify-center
             border-2 hover:border-[#b03c2f] rounded-lg overflow-hidden"> 
             <p className="flex  bg-[#b03c2f] text-white justify-center items-center">
                 {props.nome}
@@ -27,6 +35,7 @@ export function Item(props) {
                     padding: "8px",
                     fontSize: "12px"
                 }}
+                onClick={votar}
                 >
                     <Favorite />
                 </Button>
