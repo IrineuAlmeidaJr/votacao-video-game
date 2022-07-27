@@ -1,8 +1,9 @@
 import { Header } from "../components/Header";
 import { Item } from "../components/Item";
 import { TextField, Button} from "@mui/material";
-import { PropaneSharp, Send } from "@mui/icons-material";
+import { PropaneSharp, Upload } from "@mui/icons-material";
 import { useEffect, useState } from "react";
+// import UploadIcon from '@mui/icons-material/Upload';
 
 export function Home() {
     const [listaVideoGames, setListaVideoGames] = useState([]);
@@ -82,10 +83,13 @@ export function Home() {
         >
             <div className="w-[95%] xl:w-[85%] my-8 p-4 flex flex-1 flex-col bg-yellow-100/30 rounded-md">
                <Header />
-               <section className="w-full mt-4 py-5 flex flex-1 flex-row justify-center bg-yellow-100/30 rounded-md">
-                   <aside className="px-4 flex flex-col">
-                        <h2 className="text-gray-800 text-lg font-light my-4">Inserir: </h2>
+               <section className="w-full mt-4 py-5 flex flex-1 flex-col lg:flex-row justify-center bg-yellow-100/30 rounded-md">
+                   <aside className="w-full 2xl:w-[30%] xl:w-[30%] lg:w-[30%] my-6 px-4 flex flex-col 
+                   lg:justify-start  justify-center 
+                   items-center">
+                        {/* <h2 className="text-gray-800 text-lg font-light my-4">Inserir: </h2> */}
                         <TextField
+                        className="w-full"
                         sx={{ mb: 3 }}
                         required
                         id="outlined-required"
@@ -94,16 +98,18 @@ export function Home() {
                         onChange={e => setNome(e.target.value)}
                         />
                         <TextField
-                        sx={{ mb: 1 }}
+                        className="w-full"
                         required
                         id="outlined-required"
                         label="URL Imagem"
                         defaultValue=" "
                         onChange={e => setUrlImg(e.target.value)}
                         />
-                        <Button 
+                        <Button
+                        className="w-[50%]"
+                        sx={{ mt: 2 }}
                         variant="contained" 
-                        endIcon={<Send />}
+                        endIcon={<Upload />}
                         style={{
                             borderRadius: 12,
                             backgroundColor: "#b03c2f",
@@ -112,25 +118,26 @@ export function Home() {
                         }}
                         onClick={handleNewVideoGame}
                         >
-                            Enviar
+                            Inserir
                         </Button>
-                        
-                   </aside>
-                   <section className="w-full py-5 mr-4 grid grid-cols-3 gap-x-8 gap-y-4 bg-yellow-100/30 rounded-md overflow-auto">
-                        {
-                            listaVideoGames.map(videoGame => (
-                                < Item 
-                                isChange={isChange}
-                                setIsChange = {setIsChange}
-                                key={videoGame.id}
-                                id={videoGame.id}
-                                pos={videoGame.votes}
-                                nome={videoGame.name}
-                                url={videoGame.urlImage}
-                                />
-                            ))
-                        }
-                   </section>
+                    </aside>
+                    <section className="w-full py-5 mr-4 
+                    grid grid-cols-1 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2  
+                    gap-x-8 gap-y-4 bg-yellow-100/30 rounded-md overflow-auto">
+                            {
+                                listaVideoGames.map(videoGame => (
+                                    < Item 
+                                    isChange={isChange}
+                                    setIsChange = {setIsChange}
+                                    key={videoGame.id}
+                                    id={videoGame.id}
+                                    pos={videoGame.votes}
+                                    nome={videoGame.name}
+                                    url={videoGame.urlImage}
+                                    />
+                                ))
+                            }
+                    </section>
                </section>
             </div>
         </div>

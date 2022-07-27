@@ -17,10 +17,10 @@ export function Item(props) {
             <p className="flex  bg-[#b03c2f] text-white justify-center items-center">
                 {props.nome}
             </p>
-            <div className="w-[250px]">
+            <div className="w-full flex justify-center items-center">
                 <img 
                 src={props.url}
-                className="object-scale-down h-48 w-96"
+                className="items-center object-scale-down h-48 w-96"
                 />
             </div>
             
