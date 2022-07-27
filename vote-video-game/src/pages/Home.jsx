@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 export function Home() {
     const [listaVideoGames, setListaVideoGames] = useState([]);
-    const [votos, setVotos] = useState(0);
+    const [isChange, setIsChange] = useState(0);
     const [nome, setNome] = useState('');
     const [urlImg, setUrlImg] = useState('');
 
@@ -30,20 +30,6 @@ export function Home() {
         return temp;   
     }
 
-    useEffect(() => {
-        const url = "https://vote-video-game-api.herokuapp.com/videogame";
-        fetch(url,{
-            method: "GET",
-        })
-        .then(response => {
-            response.json().then(data => {
-                setListaVideoGames(ordenarPorVotos(data));                
-            })
-        }).catch(function(err) {
-            console.error('Failed retrieving information', err);
-        });
-    })
-
     function handleNewVideoGame(e) {
         e.preventDefault();
         if(nome === '' || urlImg === '') {
@@ -58,19 +44,38 @@ export function Home() {
         }
 
         const url = "https://vote-video-game-api.herokuapp.com/videogame";
-        const tempJSON = JSON.stringify(videoGame)
-        console.log(tempJSON)
         fetch('https://vote-video-game-api.herokuapp.com/videogame', {
             method: "POST", // or "PUT" with the url changed to, e.g "https://reqres.in/api/users/2"
             headers: {
                 'Content-type': 'application/json'
             },
-            body: JSON.stringify(
-                { name: nome, urlImg: urlImg}
-            )
+            body: JSON.stringify({ name: nome, urlImage: urlImg})
         });
     }
 
+    function votarVideoGame() {
+        const url = `https://vote-video-game-api.herokuapp.com/videogame/${props.id}`;
+        fetch(url,{
+            method: "PUT",
+        })
+    }
+
+    useEffect(() => {
+        console.log("Carregou")
+        setTimeout(() => {
+            const url = "https://vote-video-game-api.herokuapp.com/videogame";
+            fetch(url,{
+                method: "GET",
+            })
+            .then(response => {
+                response.json().then(data => {
+                    setListaVideoGames(ordenarPorVotos(data));                
+                })
+            }).catch(function(err) {
+                console.error('Failed retrieving information', err);
+            });
+          }, 500);
+    });
 
     return(
         <div className="min-h-screen bg-game bg-cover bg-no-repeat flex flex-col items-center font-['roboto']"
@@ -115,6 +120,8 @@ export function Home() {
                         {
                             listaVideoGames.map(videoGame => (
                                 < Item 
+                                isChange={isChange}
+                                setIsChange = {setIsChange}
                                 key={videoGame.id}
                                 id={videoGame.id}
                                 pos={videoGame.votes}
