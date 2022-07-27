@@ -32,12 +32,12 @@
 - [ ] Responsividade do frontend
 
 ## 📺 Imagem
-- <b>Branches Main</b>
+<b>- Branches Main</b>
 <div>
   <img src="https://raw.githubusercontent.com/IrineuAlmeidaJr/votacao-video-game/main/sample/gravacaoTela.gif" />
 </div>
 </br>
-- <b>Branches api-votacao</b>
+<b>- Branches api-votacao</b>
 <p>A título de exemplo, na url: https://vote-video-game-api.herokuapp.com/videogame retorna a lista dos video games</p>
 <div>
   <img src="https://raw.githubusercontent.com/IrineuAlmeidaJr/votacao-video-game/main/sample/exemploBackEnd.png" width="610" />
