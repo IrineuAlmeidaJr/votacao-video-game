@@ -1,5 +1,5 @@
 <h1 align="center">Votação Melhores Video Games </h1>
-<h4 align="justify">Projeto pessoal realizado como o apreendido na Imersão Java da Alura em (julho/2022), o projeto visa criar uma página web em ReactJS que realiza votação dos melhores videos games, os dados são armazenados em uma banco não relacional (MongoDB), backend em Spring Boot 3.0 (Java 17).</h4> 
+<h4 align="justify">Projeto pessoal realizado com o apreendido da Imersão Java da Alura em (julho/2022), o projeto visa criar uma página web em ReactJS que realiza votação dos melhores videos games, os dados são armazenados em uma banco não relacional (MongoDB), backend em Spring Boot 3.0 (Java 17).</h4> 
 <h4>Além de votar pode realizar a inserção de um novo video game. Os votos são ordenador com método de ordenação 'insertion sort' de acordo com os votos recebidos.</h4>
 
 <p align="center">
