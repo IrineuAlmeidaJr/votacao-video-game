@@ -29,7 +29,7 @@
 - [x] Listagem ordenada pelo ranking
 - [ ] Ordenar no backend e retornar para frontend já ordenado
 - [x] Backend eviar JSON da API para o frontend consumir os dados
-- [ ] Responsividade do frontend
+- [x] Responsividade do frontend
 
 ## 📺 Imagem
 <b>- Branches Main</b>
