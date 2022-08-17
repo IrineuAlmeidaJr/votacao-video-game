@@ -27,7 +27,7 @@
 ## 🎯 Desafio
 - [x] CRUD para videogames
 - [x] Listagem ordenada pelo ranking
-- [ ] Ordenar no backend e retornar para frontend já ordenado
+- [ ] Ordenar no backend e retornar para frontend já ordenado, para view apenas exibir os dados
 - [x] Backend eviar JSON da API para o frontend consumir os dados
 - [x] Responsividade do frontend
 
